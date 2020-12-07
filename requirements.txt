@@ -1,0 +1,17 @@
+certifi==2020.12.5
+cffi==1.14.4
+chardet==3.0.4
+cryptography==3.2.1
+gevent==20.9.0
+greenlet==0.4.17
+grequests==0.6.0
+hypixel==0.7.9
+idna==2.10
+mutf8==1.0.2
+pycparser==2.20
+PyNBT==3.1.0
+requests==2.25.0
+six==1.15.0
+urllib3==1.26.2
+zope.event==4.5.0
+zope.interface==5.2.0
