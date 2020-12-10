@@ -21,6 +21,7 @@ def authenticate(username, password):
     except YggdrasilError as e:
         logger.fatal("Error authenticating", e)
         exit(2)
+    # User's username, like "Successful authentication as Notch."
     logger.debug("Successful authentication as {}.".format(auth_token.profile.name))
 
 
@@ -29,11 +30,18 @@ def main():
     connection = Connection(SERVER_IP, 25565, auth_token=auth_token)
 
     connection.register_packet_listener(packet_handler.handle_join_game, packets.JoinGamePacket)
-    connection.register_packet_listener(lambda chat_packet: packet_handler.handle_chat(chat_packet, connection), packets.ChatMessagePacket)
+
+    # Lambda function is used to inject the connection so the handle_chat function can also send chat packets.
+    # That's important for AFK
+    connection.register_packet_listener(lambda chat_packet:
+                                        packet_handler.handle_chat(chat_packet, connection), packets.ChatMessagePacket)
+
     connection.register_packet_listener(packet_handler.handle_player_list, packets.PlayerListItemPacket)
 
     connection.connect()
 
+    # Allows user to enter chat messages in the terminal and we'll send them.
+    # Sometimes needed to run /l bedwars.
     while True:
         try:
             text = input()
@@ -41,7 +49,7 @@ def main():
             packet.message = text
             connection.write_packet(packet)
         except KeyboardInterrupt:
-            print("Bye!")
+            print("Exiting bedwars bot.")
             sys.exit()
 
 

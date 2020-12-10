@@ -1,6 +1,7 @@
 import requests
 import math
 
+from terminaltables import AsciiTable
 from bw_logging import get_logger
 from config import HYPIXEL_API_KEY
 
@@ -79,3 +80,10 @@ def check_stats(uuid):
     }
 
     check_stats_logger.info("Stats for {}: {}".format(player_data["player"]["displayname"], stats))
+
+    table = AsciiTable([
+        ["Username        ", "Stars", "Final KDR", "Win/Loss Rate"],
+        [stats["username"], stats["stars"], round(stats["final_kdr"], 2), round(stats["wlr"], 2)]
+    ])
+
+    print(table.table)
