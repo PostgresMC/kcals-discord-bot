@@ -2,10 +2,10 @@
 SERVER_IP = "mc.hypixel.net"
 
 # Username for legacy or email for migrated accounts
-MINECRAFT_USERNAME = "mutedontop@gmail.com"
+MINECRAFT_USERNAME = "my_minecraft_email@gmail.com"
 
 # Password for account
-MINECRAFT_PASSWORD = "a1b2c34d5e123!A"
+MINECRAFT_PASSWORD = "my_minecraft_password"
 
 # Key for the Hypixel API. Get one with `/api new` on Hypixel.
-HYPIXEL_API_KEY = "a78a82bf-8851-4bc2-9279-519f28b9b26e"
+HYPIXEL_API_KEY = "my-hypixel-api-key"
